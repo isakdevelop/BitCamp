@@ -3,6 +3,7 @@ package kaupOOP;
 import java.util.Scanner;
 
 public class KaupTest {
+    static String test;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Person person = new Person();
