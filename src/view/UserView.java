@@ -63,7 +63,8 @@ public class UserView {
 
                 case "7":
                     System.out.println("=== 이름 검색 ===");
-                    System.out.println(controller.findUserByName(sc));
+                    controller.findUserByName(sc).forEach((i) ->
+                            System.out.println(i));
                     break;
 
                 case "8":

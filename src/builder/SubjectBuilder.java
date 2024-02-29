@@ -3,9 +3,15 @@ package builder;
 import model.SubjectDTO;
 
 public class SubjectBuilder {
+    private int id;
     private int koreanScore;
     private int mathScore;
     private int englishScore;
+
+    public SubjectBuilder id(int id) {
+        this.id = id;
+        return this;
+    }
 
     public SubjectBuilder koreanScore(int koreanScore) {
         this.koreanScore = koreanScore;
@@ -24,6 +30,7 @@ public class SubjectBuilder {
 
     public SubjectDTO build()   {
         return new SubjectDTO(
+                id,
                 koreanScore,
                 mathScore,
                 englishScore

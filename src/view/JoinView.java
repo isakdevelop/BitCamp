@@ -2,7 +2,9 @@ package view;
 
 import builder.MemberBuilder;
 import model.MemberDTO;
+import service.AuthService;
 import service.UtilService;
+import serviceimpl.AuthServiceImpl;
 import serviceimpl.UtilServiceImpl;
 
 import java.util.Scanner;
@@ -15,6 +17,7 @@ public class JoinView {
                 " 전화 번호, 주소, 직업을 나누어 입력해주세요.");
 
         UtilService utilService = UtilServiceImpl.getInstance();
+        AuthService authService = AuthServiceImpl.getInstance();
 
         MemberDTO member = new MemberBuilder()
                 .userName(sc.next())
@@ -29,5 +32,7 @@ public class JoinView {
 
         System.out.println(member.toString());
         System.out.println();
+
+        authService.addUsers();
     }
 }

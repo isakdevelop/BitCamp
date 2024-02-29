@@ -38,5 +38,7 @@ public class BoardView {
         });
         System.out.println();
         //메모리 변화가 일어나지 않음. 내부 반복자 / 객체가 움직임.
+
+
     }
 }

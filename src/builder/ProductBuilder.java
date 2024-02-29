@@ -3,10 +3,16 @@ package builder;
 import model.ProductDTO;
 
 public class ProductBuilder {
+    private int id;
     private int pno;
     private String name;
     private String company;
     private int price;
+
+    public ProductBuilder id(int id) {
+        this.id = id;
+        return this;
+    }
 
     public ProductBuilder pno(int pno) {
         this.pno = pno;
@@ -30,6 +36,7 @@ public class ProductBuilder {
 
     public ProductDTO build() {
         return new ProductDTO(
+                id,
                 pno,
                 name,
                 company,

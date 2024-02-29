@@ -111,8 +111,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<MemberDTO> getUserList() {
-        List<MemberDTO> user = new ArrayList<>(users.values());
-        return user;
+        return new ArrayList<>(users.values());
     }
 
     @Override

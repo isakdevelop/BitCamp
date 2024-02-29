@@ -27,9 +27,9 @@ public class UtilServiceImpl implements UtilService {
     public String createRandomName() {
         String[] name = {"이정재", "마동석", "송강호", "윤여정", "황정민", "정우성",
                 "이병헌", "현 빈", "유해진", "손석구", "전도연", "손예진", "하지원", "김하늘",
-                "송중기", "하정우", "장동건", "원 빈", "박해일", "소지섭", "김혜수", "이삭"};
+                "송중기", "하정우", "장동건", "원 빈", "박해일", "소지섭", "김혜수"};
 
-        return name[createRandomInteger(0, 22)];
+        return name[createRandomInteger(0, 20)];
     }
 
     @Override
@@ -67,5 +67,14 @@ public class UtilServiceImpl implements UtilService {
     public String createRandomCompany() {
         String[] companies = {"구글", "엔디비아", "메타", "삼성", "LG", "애플"};
         return companies[createRandomInteger(0, 6)];
+    }
+
+    @Override
+    public String createRandomUserName() {
+        String username = "";
+        for(; username.length() < 5; username += String.valueOf((char)('a' + this.createRandomInteger(0, 26))));
+        // a가 아스키코드 97 z가 아스키코드 122니까 26까지의 경우에서 하는 것.
+
+        return username;
     }
 }
