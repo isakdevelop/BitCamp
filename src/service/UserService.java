@@ -1,19 +1,19 @@
 package service;
 
-import model.MemberDTO;
+import model.Member;
 
 import java.util.List;
 import java.util.Scanner;
 
 public interface UserService {
     String addUsers();
-    String join(MemberDTO user);
-    String login(MemberDTO user, Scanner sc);
-    MemberDTO findUserById(MemberDTO user, String userName);
-    String updatePassword(MemberDTO user, Scanner sc);
+    String join(Member user);
+    String login(Member user, Scanner sc);
+    Member findUserById(Member user, String userName);
+    String updatePassword(Member user, Scanner sc);
     String deleteUser(String userName);
-    List<MemberDTO> getUserList();
-    List<MemberDTO> findUsersByName(String name);
-    List<MemberDTO> findUserByJob(String job);
+    List<?> getUserList();
+    List<?> findUsersByName(String name);
+    List<?> findUserByJob(String job);
     String count();
 }

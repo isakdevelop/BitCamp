@@ -1,6 +1,6 @@
 package controller;
 
-import model.MemberDTO;
+import model.Member;
 import service.AuthService;
 import serviceimpl.AuthServiceImpl;
 
@@ -32,11 +32,11 @@ public class AuthController implements AuthService{
         return authService.addUsers();
     }
 
-    public MemberDTO findUser(String name) {
+    public Member findUser(String name) {
         return authService.findUser(name);
     }
 
-    public Map<String, MemberDTO> getUserMap()  {
+    public Map<String, Member> getUserMap()  {
         return authService.getUserMap();
     }
 

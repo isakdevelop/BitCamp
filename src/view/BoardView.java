@@ -1,7 +1,6 @@
 package view;
 
-import builder.BoardBuilder;
-import model.BoardDTO;
+import model.Board;
 import service.UtilService;
 import serviceimpl.UtilServiceImpl;
 
@@ -10,25 +9,26 @@ import java.util.List;
 
 public class BoardView {
     public static void main() {
-        List<BoardDTO> articles = new ArrayList<>();
+        List<Board> articles = new ArrayList<>();
         UtilService util = UtilServiceImpl.getInstance();
 
         for (int i = 0; i < 5; i++) {
-            articles.add(new BoardBuilder()
-                    .subject(util.createRandomTitle())
-                    .content(util.createRandomContent())
-                    .writer(util.createRandomName())
-                    .build());
+            articles.add(
+                    Board.builder()
+                            .subject(util.createRandomTitle())
+                            .content(util.createRandomContent())
+                            .writer(util.createRandomName())
+                            .build());
 
         }
 
-        for (BoardDTO board : articles) {
+        for (Board board : articles) {
             System.out.println(board.getSubject() + "\t" +
                     board.getContent() + "\t" +
                     board.getWriter());
         }
 
-        for (BoardDTO i : articles) {
+        for (Board i : articles) {
             System.out.println(i.toString());
         }
         //외부 반복자. 요소가 밖으로 나갔다가 옴 / 객체가 움직이지 않음.

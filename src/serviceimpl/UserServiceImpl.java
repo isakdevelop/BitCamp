@@ -1,7 +1,6 @@
 package serviceimpl;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.UserService;
 import service.UtilService;
 
@@ -10,7 +9,7 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
     UtilService utilService = UtilServiceImpl.getInstance();
     private static UserService instance = new UserServiceImpl();
-    Map<String, MemberDTO> users;
+    Map<String, Member> users;
     private UserServiceImpl()   {
         this.users = new HashMap<>();
     }
@@ -24,7 +23,7 @@ public class UserServiceImpl implements UserService {
         for (int i = 0; i < 5; i++) {
             String userName = utilService.createRandomUserName();
             users.put(userName,
-                    new MemberBuilder()
+                    Member.builder()
                             .userName(userName)
                             .password("1")
                             .confirmPassword("1")
@@ -36,13 +35,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String join(MemberDTO user) {
+    public String join(Member user) {
         users.put(user.getUserName(), user);
         return "회원 가입을 축하드립니다!";
     }
 
     @Override
-    public String login(MemberDTO user, Scanner sc) {
+    public String login(Member user, Scanner sc) {
 //        String msg = "";                  // 강사님 코드
 //        MemberDTO userInMap = users.get(user.getUserName());
 //        if (userInMap == null)  {
@@ -77,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
 
-    public MemberDTO findUserById(MemberDTO user, String userName) {
+    public Member findUserById(Member user, String userName) {
         if (users.containsKey(userName))    {
             user = users.get(userName);
 
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(MemberDTO user, Scanner sc) {
+    public String updatePassword(Member user, Scanner sc) {
         String UserName = sc.next();
         user = users.get(UserName);
 
@@ -110,14 +109,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MemberDTO> getUserList() {
+    public List<Member> getUserList() {
         return new ArrayList<>(users.values());
     }
 
     @Override
-    public List<MemberDTO> findUsersByName(String name) {
-        List<MemberDTO> userList = new ArrayList<>();
-        for (MemberDTO user : users.values()) {
+    public List<Member> findUsersByName(String name) {
+        List<Member> userList = new ArrayList<>();
+        for (Member user : users.values()) {
             if (user.getName().equals(name)) {
                 userList.add(user);
             }
@@ -126,9 +125,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MemberDTO> findUserByJob(String job) {
-        List<MemberDTO> userList = new ArrayList<>();
-        for (MemberDTO user : users.values())   {
+    public List<Member> findUserByJob(String job) {
+        List<Member> userList = new ArrayList<>();
+        for (Member user : users.values())   {
             if (user.getJob().equals(job))  {
                 userList.add(user);
             }

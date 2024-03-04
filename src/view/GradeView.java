@@ -1,9 +1,7 @@
 package view;
 
-import builder.MemberBuilder;
-import builder.SubjectBuilder;
-import model.MemberDTO;
-import model.SubjectDTO;
+import model.Member;
+import model.Subject;
 import service.GradeService;
 import service.UtilService;
 import serviceimpl.GradeServiceImpl;
@@ -18,12 +16,12 @@ public class GradeView {
         GradeService gradeService = GradeServiceImpl.getInstance();
 
         System.out.println("이름을 입력해 주세요.");
-        MemberDTO student = new MemberBuilder()
+        Member student = Member.builder()
                 .name(sc.next())
                 .build();
 
         System.out.println("국어 점수, 영어 점수, 수학 점수를 순서대로 입력해주세요.");
-        SubjectDTO subjects = new SubjectBuilder()
+        Subject subjects = Subject.builder()
                 .koreanScore(utilService.createRandomInteger(0,100))
                 .mathScore(utilService.createRandomInteger(0, 100))
                 .englishScore(utilService.createRandomInteger(0, 100))

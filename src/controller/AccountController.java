@@ -1,7 +1,6 @@
 package controller;
 
-import builder.AccountBuilder;
-import model.AccountDTO;
+import model.Account;
 import service.AccountService;
 import serviceimpl.AccountServiceImpl;
 
@@ -20,13 +19,13 @@ public class AccountController {
         System.out.println("사용자의 계좌번호, 성명을 입력하여 주세요.");
 
         return accountService.createAccount(
-                new AccountBuilder()
-                .accountNumber(sc.next())
-                .accountHolder(sc.next())
-                .balance(0)
-                .transactionDate(localDate)
-                .returnType(null)
-                .Build());
+                Account.builder()
+                        .accountNumber(sc.next())
+                        .accountHolder(sc.next())
+                        .balance(0)
+                        .transactionDate(localDate)
+                        .returnType(null)
+                        .build());
     }
 
     public String deposit(Scanner sc) {
@@ -46,8 +45,8 @@ public class AccountController {
         System.out.println("계좌 번호를 입력해주세요.");
 
         StringBuilder balance = new StringBuilder();
-        accountService.historyOfBalance(sc.next()).forEach(accountDTO -> {
-            String output = String.format("%s : %.0f\n", accountDTO.getReturnType(), accountDTO.getBalance());
+        accountService.historyOfBalance(sc.next()).forEach(account -> {
+            String output = String.format("%s : %.0f\n", account.getReturnType(), account.getBalance());
                 balance.append(output);
         });
 

@@ -1,7 +1,6 @@
 package view;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.AuthService;
 import service.UtilService;
 import serviceimpl.AuthServiceImpl;
@@ -19,7 +18,7 @@ public class JoinView {
         UtilService utilService = UtilServiceImpl.getInstance();
         AuthService authService = AuthServiceImpl.getInstance();
 
-        MemberDTO member = new MemberBuilder()
+        Member member = Member.builder()
                 .userName(sc.next())
                 .password(sc.next())
                 .confirmPassword(sc.next())

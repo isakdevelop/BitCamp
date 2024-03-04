@@ -1,8 +1,7 @@
 package view;
 
-import builder.MemberBuilder;
 import controller.AuthController;
-import model.MemberDTO;
+import model.Member;
 import service.AuthService;
 import serviceimpl.AuthServiceImpl;
 
@@ -39,7 +38,7 @@ public class AuthView {
                     break;
                 case "6":
                     System.out.println("6. 회원목록");
-                    Map<String, MemberDTO> users = controller.getUserMap();
+                    Map<String, ?> users = controller.getUserMap();
                     users.forEach((k, v) -> {
                         System.out.printf("아이디 : %s, 회원 정보 : %s",k,v);
                     });

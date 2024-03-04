@@ -1,17 +1,15 @@
 package serviceimpl;
 
-import builder.AccountBuilder;
-import model.AccountDTO;
+import model.Account;
 import service.AccountService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
 
-    List<AccountDTO> list;
-    List<AccountDTO> balanceHistory;
+    List<Account> list;
+    List<Account> balanceHistory;
 
     long id;
 
@@ -26,25 +24,25 @@ public class AccountServiceImpl implements AccountService {
         return instance;
     }
     @Override
-    public String createAccount(AccountDTO accountDTO) {
-        list.add(accountDTO);
+    public String createAccount(Account account) {
+        list.add(account);
 
         return "회원가입 완료";
     }
 
     @Override
     public String deposit(String accountNumber, double amount) {
-        for (AccountDTO account : list) {
+        for (Account account : list) {
             if (account.getAccountNumber().equals(accountNumber)) {
                 account.setBalance(account.getBalance() + amount);
 
                 balanceHistory.add(
-                        new AccountBuilder()
+                        Account.builder()
                                 .accountNumber(accountNumber)
                                 .accountHolder(account.getAccountHolder())
                                 .balance(amount)
                                 .returnType("입금")
-                                .Build());
+                                .build());
 
                 return "입금 완료";
             }
@@ -54,16 +52,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String withdraw(String accountNumber, double amount) {
-        for (AccountDTO account : list) {
+        for (Account account : list) {
             if (account.getAccountNumber().equals(accountNumber))   {
                 if (account.getBalance() - amount >= 0) {
                     balanceHistory.add(
-                            new AccountBuilder()
-                            .accountNumber(accountNumber)
-                            .accountHolder(account.getAccountHolder())
-                            .balance(amount)
-                            .returnType("출금")
-                            .Build());
+                            Account.builder()
+                                    .accountNumber(accountNumber)
+                                    .accountHolder(account.getAccountHolder())
+                                    .balance(amount)
+                                    .returnType("출금")
+                                    .build());
 
                     return "출금 완료";
                 }   else {
@@ -76,18 +74,18 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String getBalance(String accountNumber) {
-        for (AccountDTO accountDTO : list)  {
-            if (accountDTO.getAccountNumber().equals(accountNumber))    {
-                return accountDTO.getBalance() + "";
+        for (Account account : list)  {
+            if (account.getAccountNumber().equals(accountNumber))    {
+                return account.getBalance() + "";
             }
         }
         return "계좌 정보가 존재 하지 않습니다.";
     }
 
     @Override
-    public List<AccountDTO> historyOfBalance(String accountNumber) {
-        for (AccountDTO accountDTO : balanceHistory)    {
-            if (accountDTO.getAccountNumber().equals(accountNumber))    {
+    public List<Account> historyOfBalance(String accountNumber) {
+        for (Account account : balanceHistory)    {
+            if (account.getAccountNumber().equals(accountNumber))    {
                 return balanceHistory;
             }
         }
@@ -96,10 +94,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String cancelAccount(String accountNumber) {
-        for (AccountDTO accountDTO : list)  {
-                if (accountDTO.getAccountNumber().equals(accountNumber))    {
-                list.remove(accountDTO);
-                balanceHistory.remove(accountDTO);
+        for (Account account : list)  {
+                if (account.getAccountNumber().equals(accountNumber))    {
+                list.remove(account);
+                balanceHistory.remove(account);
 
                 return "계좌 삭제가 완료되었습니다.";
             }
